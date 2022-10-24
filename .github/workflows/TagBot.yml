@@ -18,3 +18,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ssh: ${{ secrets.DOCUMENTER}}
+          user: Azzaare
+          email: jf@baffier.fr
