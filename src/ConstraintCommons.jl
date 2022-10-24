@@ -1,5 +1,9 @@
 module ConstraintCommons
 
-# Write your package code here.
+#!SECTION -- Exports
+export ∅
+
+#!SECTION -- Includes
+include("empty_collection.jl")
 
 end
