@@ -1,7 +1,7 @@
 name = "ConstraintCommons"
 uuid = "e37357d9-0691-492f-a822-e5ea6a920954"
 authors = ["azzaare (jean-François BAFFIER)"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Dictionaries = "85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4"
