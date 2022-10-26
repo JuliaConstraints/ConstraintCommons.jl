@@ -3,10 +3,10 @@
 abstract type AbstractAutomaton end
 
 # Determnistic Automaton
-struct Automaton{S,T} <: AbstractAutomaton
+struct Automaton{S, T, F <: Union{S, Vector{S}, Set{S}}} <: AbstractAutomaton
     states::Dict{Tuple{S,T},S}
     start::S
-    finish::S
+    finish::F
 end
 
 function accept(a::Automaton, w)
@@ -15,5 +15,5 @@ function accept(a::Automaton, w)
         s = get(a.states, (s, c), nothing)
         isnothing(s) && return false
     end
-    return s == a.finish
+    return s ∈ a.finish
 end
