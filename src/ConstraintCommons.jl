@@ -10,6 +10,7 @@ export MDD
 
 export δ_extrema
 export accept
+export extract_parameters
 export incsert!
 export oversample
 
@@ -19,6 +20,7 @@ include("automata.jl")
 include("dictionaries.jl")
 include("nothing.jl")
 include("extrema.jl")
+include("parameters.jl")
 include("sampling.jl")
 include("symbols.jl")
 
