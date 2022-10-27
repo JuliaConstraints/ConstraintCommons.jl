@@ -2,5 +2,5 @@ using ConstraintCommons
 using Test
 
 @testset "ConstraintCommons.jl" begin
-    @test 42 ∉ ∅
+    @test 42 ∉ nothing
 end
