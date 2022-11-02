@@ -14,3 +14,10 @@ function accept(a::MDD, w)
     end
     return true
 end
+
+function Automaton(a::MDD)
+    start = first(a.states)
+    finish = last(a.states)
+    states = collect(Iterators.flatten(a.states))
+    return Automaton(states, start, finish)
+end
