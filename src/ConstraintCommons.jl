@@ -17,9 +17,10 @@ export oversample
 #!SECTION -- Includes
 
 include("automata.jl")
+include("diagrams.jl")
 include("dictionaries.jl")
-include("nothing.jl")
 include("extrema.jl")
+include("nothing.jl")
 include("parameters.jl")
 include("sampling.jl")
 include("symbols.jl")
