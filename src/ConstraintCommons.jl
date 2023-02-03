@@ -2,6 +2,8 @@ module ConstraintCommons
 
 #!SECTION -- Imports
 using Dictionaries
+using TestItemRunner
+using TestItems
 
 #!SECTION -- Exports
 
