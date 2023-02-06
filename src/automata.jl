@@ -41,16 +41,21 @@ function accept(a::Automaton, w)
     return at_end(a, s)
 end
 
+# SECTION - Test Items for Automata
 @testitem "Automata" tags = [:automata] begin
     states = Dict(
-        (:a, 0) => :b,
-        (:a, 1) => :a,
-        (:b, 1) => :b,
+        (:a, 0) => :a,
+        (:a, 1) => :b,
+        (:b, 1) => :c,
+        (:c, 0) => :d,
+        (:d, 0) => :d,
+        (:d, 1) => :e,
+        (:e, 0) => :e,
     )
     start = :a
-    finish = :b
+    finish = :e
     a = Automaton(states, start, finish)
 
-    @test accept(a, [1,0,1])
-    @test !accept(a, [1,1,1])
+    @test accept(a, [0,0,1,1,0,0,1,0,0])
+    @test !accept(a, [1,1,1,0,1])
 end
