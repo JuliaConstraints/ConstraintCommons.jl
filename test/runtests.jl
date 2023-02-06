@@ -1,6 +1,3 @@
-using ConstraintCommons
-using Test
+using TestItemRunner
 
-@testset "ConstraintCommons.jl" begin
-    @test 42 ∉ nothing
-end
+@run_package_tests
