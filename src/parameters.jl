@@ -31,14 +31,14 @@ const USUAL_CONSTRAINT_PARAMETERS = [
 
 Extracts the intersection between the `kargs` of `m` and `parameters` (defaults to `USUAL_CONSTRAINT_PARAMETERS`).
 """
-function extract_parameters(m::Method; parameters = USUAL_CONSTRAINT_PARAMETERS)
+function extract_parameters(m::Method; parameters=USUAL_CONSTRAINT_PARAMETERS)
     return intersect(Base.kwarg_decl(m), parameters)
 end
 
 function extract_parameters(
     f::F;
-    parameters = USUAL_CONSTRAINT_PARAMETERS,
-) where {F <: Function}
+    parameters=USUAL_CONSTRAINT_PARAMETERS
+) where {F<:Function}
     return filter(!isempty, map(m -> extract_parameters(m; parameters), methods(f)))
 end
 
