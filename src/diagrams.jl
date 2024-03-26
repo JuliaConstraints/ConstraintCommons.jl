@@ -25,17 +25,18 @@ function accept(a::MDD, w)
     return true
 end
 
-"""
-    Automaton(a::MDD)
+# """
+#     Automaton(a::MDD)
 
-Construct an automaton based on a given Multivalued Decision Diagrams (MDD).
-"""
-function Automaton(a::MDD)
-    start = first(a.states)
-    finish = last(a.states)
-    states = collect(Iterators.flatten(a.states))
-    return Automaton(states, start, finish)
-end
+# Construct an automaton based on a given Multivalued Decision Diagrams (MDD).
+# """
+# function Automaton(a::MDD)
+#     start = first(a.states)
+#     finish = last(a.states)
+#     states = Dict(Iterators.flatten(a.states))
+#     @info "debug" states start finish
+#     return Automaton(states, start, finish)
+# end
 
 # SECTION - Test Items for Automata
 @testitem "MDD" tags = [:automata, :mdd] begin
@@ -56,6 +57,8 @@ end
         ),
     ]
     a = MDD(states)
+
+    # b = Automaton(a)
 
     @test accept(a, [0,2,0])
     @test accept(a, [1,2,0])
