@@ -9,3 +9,7 @@
 [![PkgEval](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/C/ConstraintCommons.svg)](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/report.html) -->
 
 ConstraintCommons.jl is an essential package within the Julia Constraints ecosystem designed to facilitate the development and interoperability of constraint programming solutions in Julia. It serves as a foundational layer that provides shared structures, abstract types, functions, and generic methods utilized by both basic feature packages and learning-oriented packages.
+
+## Issues and Contributions
+
+We encourage opening issues and discussing contributions to this package on the [Julia Constraints](https://github.com/JuliaConstraints/JuliaConstraints.github.io) website repository.
