@@ -53,9 +53,13 @@ end
         (:e, 0) => :e,
     )
     start = :a
-    finish = :e
-    a = Automaton(states, start, finish)
+    finish_a = :e
+    finish_b = [:d, :e]
+    a = Automaton(states, start, finish_a)
+    b = Automaton(states, start, finish_b)
 
     @test accept(a, [0,0,1,1,0,0,1,0,0])
     @test !accept(a, [1,1,1,0,1])
+    @test accept(b, [0,0,1,1,0,0,1,0,0])
+    @test !accept(b, [1,1,1,0,1])
 end
