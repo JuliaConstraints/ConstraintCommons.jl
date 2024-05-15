@@ -11,7 +11,7 @@ abstract type AbstractAutomaton end
 
 A minimal implementation of a deterministic automaton structure.
 """
-struct Automaton{S, T, F <: Union{S, Vector{S}, Set{S}}} <: AbstractAutomaton
+struct Automaton{S,T,F<:Union{S,Vector{S},Set{S}}} <: AbstractAutomaton
     states::Dict{Tuple{S,T},S}
     start::S
     finish::F
@@ -22,7 +22,7 @@ end
 
 Internal method used by `accept` with `Automaton`.
 """
-at_end(a::Automaton{S, T, S}, s) where {S, T} = s == a.finish
+at_end(a::Automaton{S,T,S}, s) where {S,T} = s == a.finish
 
 at_end(a, s) = s ∈ a.finish
 
@@ -58,8 +58,8 @@ end
     a = Automaton(states, start, finish_a)
     b = Automaton(states, start, finish_b)
 
-    @test accept(a, [0,0,1,1,0,0,1,0,0])
-    @test !accept(a, [1,1,1,0,1])
-    @test accept(b, [0,0,1,1,0,0,1,0,0])
-    @test !accept(b, [1,1,1,0,1])
+    @test accept(a, [0, 0, 1, 1, 0, 0, 1, 0, 0])
+    @test !accept(a, [1, 1, 1, 0, 1])
+    @test accept(b, [0, 0, 1, 1, 0, 0, 1, 0, 0])
+    @test !accept(b, [1, 1, 1, 0, 1])
 end

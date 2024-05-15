@@ -13,11 +13,11 @@ function incsert!(d::AbstractDict, ind, val = 1)
 end
 
 # SECTION - Test Items for inscert
-@testitem "Dictionary" tags = [:dictionary, :incsert] default_imports=false begin
+@testitem "Dictionary" tags = [:dictionary, :incsert] default_imports = false begin
     using ConstraintCommons, Dictionaries, Test
 
-    counters_dict = Dictionary{Symbol, Int}()
-    witness_dict = Dictionary{Symbol, Int}([:a,:b], [2,42])
+    counters_dict = Dictionary{Symbol,Int}()
+    witness_dict = Dictionary{Symbol,Int}([:a, :b], [2, 42])
 
     incsert!(counters_dict, :a)
     incsert!(counters_dict, :a)
@@ -29,11 +29,8 @@ end
 
 @testitem "Dict" tags = [:dict, :incsert] begin
 
-    counters_dict = Dict{Int, Int}()
-    witness_dict = Dict{Int, Int}(
-        23 => 2,
-        42 => 42,
-    )
+    counters_dict = Dict{Int,Int}()
+    witness_dict = Dict{Int,Int}(23 => 2, 42 => 42)
 
     incsert!(counters_dict, 23)
     incsert!(counters_dict, 23)
