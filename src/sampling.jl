@@ -26,11 +26,7 @@ function oversample(X, f)
 end
 
 @testitem "Oversampling" tags = [:sampling, :oversampling] begin
-    X = [
-        [0,1,1],
-        [0,1,2],
-        [0,0,0],
-    ]
+    X = [[0, 1, 1], [0, 1, 2], [0, 0, 0]]
 
     O = oversample(X, allunique)
 

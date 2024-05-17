@@ -60,11 +60,11 @@ end
 
     # b = Automaton(a)
 
-    @test accept(a, [0,2,0])
-    @test accept(a, [1,2,0])
-    @test accept(a, [2,0,0])
+    @test accept(a, [0, 2, 0])
+    @test accept(a, [1, 2, 0])
+    @test accept(a, [2, 0, 0])
 
-    @test !accept(a, [2,1,2])
-    @test !accept(a, [1,0,2])
-    @test !accept(a, [0,1,2])
+    @test !accept(a, [2, 1, 2])
+    @test !accept(a, [1, 0, 2])
+    @test !accept(a, [0, 1, 2])
 end
