@@ -1,7 +1,7 @@
 name = "ConstraintCommons"
 uuid = "e37357d9-0691-492f-a822-e5ea6a920954"
 authors = ["azzaare (jean-François BAFFIER)"]
-version = "0.1.6"
+version = "0.2.0"
 
 [deps]
 Dictionaries = "85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4"
@@ -12,10 +12,11 @@ TestItems = "1c621080-faea-4a02-84b6-bbd5e436b8fe"
 Dictionaries = "0.4"
 TestItemRunner = "0.2"
 TestItems = "0.1"
-julia = "1.6"
+julia = "1.7"
 
 [extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Aqua", "Test"]
