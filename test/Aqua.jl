@@ -8,7 +8,7 @@
         ConstraintCommons;
         ambiguities = (broken = false,),
         deps_compat = false,
-        piracies = (broken = false,),
+        piracies = (broken = false,)
     )
 
     @testset "Ambiguities: ConstraintCommons" begin
@@ -22,7 +22,7 @@
     @testset "Dependencies compatibility (no extras)" begin
         Aqua.test_deps_compat(
             ConstraintCommons;
-            check_extras = false,            # ignore = [:Random]
+            check_extras = false            # ignore = [:Random]
         )
     end
 end

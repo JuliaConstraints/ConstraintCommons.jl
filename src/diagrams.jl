@@ -11,8 +11,8 @@ abstract type AbstractMultivaluedDecisionDiagram end
 
 A minimal implementation of a multivalued decision diagram structure.
 """
-struct MDD{S,T} <: AbstractMultivaluedDecisionDiagram
-    states::Vector{Dict{Tuple{S,T},S}}
+struct MDD{S, T} <: AbstractMultivaluedDecisionDiagram
+    states::Vector{Dict{Tuple{S, T}, S}}
 end
 
 function accept(a::MDD, w)
@@ -39,22 +39,22 @@ end
 # end
 
 # SECTION - Test Items for Automata
-@testitem "MDD" tags = [:automata, :mdd] begin
+@testitem "MDD" tags=[:automata, :mdd] begin
     states = [
         Dict( # level x1
             (:r, 0) => :n1,
             (:r, 1) => :n2,
-            (:r, 2) => :n3,
+            (:r, 2) => :n3
         ),
         Dict( # level x2
             (:n1, 2) => :n4,
             (:n2, 2) => :n4,
-            (:n3, 0) => :n5,
+            (:n3, 0) => :n5
         ),
         Dict( # level x3
             (:n4, 0) => :t,
-            (:n5, 0) => :t,
-        ),
+            (:n5, 0) => :t
+        )
     ]
     a = MDD(states)
 
