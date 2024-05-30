@@ -21,7 +21,7 @@ function δ_extrema(X...)
 end
 
 # SECTION - Test Items for δ_extrema
-@testitem "δ_extrema" tags = [:δ_extrema] begin
+@testitem "δ_extrema" tags=[:δ_extrema] begin
     X = map(_ -> rand(1:100, 100), 1:3)
 
     @test 0 ≤ δ_extrema(X[1]) ≤ 100

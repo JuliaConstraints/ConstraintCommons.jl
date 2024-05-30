@@ -15,8 +15,8 @@ const USUAL_CONSTRAINT_PARAMETERS = [
 ]
 ```
 """
-const USUAL_CONSTRAINT_PARAMETERS =
-    [:bool, :dim, :id, :language, :op, :pair_vars, :val, :vals]
+const USUAL_CONSTRAINT_PARAMETERS = [
+    :bool, :dim, :id, :language, :op, :pair_vars, :val, :vals]
 
 """
     extract_parameters(m::Union{Method, Function}; parameters)
@@ -28,13 +28,13 @@ function extract_parameters(m::Method; parameters = USUAL_CONSTRAINT_PARAMETERS)
 end
 
 function extract_parameters(
-    f::F;
-    parameters = USUAL_CONSTRAINT_PARAMETERS,
-) where {F<:Function}
+        f::F;
+        parameters = USUAL_CONSTRAINT_PARAMETERS
+) where {F <: Function}
     return filter(!isempty, map(m -> extract_parameters(m; parameters), methods(f)))
 end
 
-@testitem "Parameters" tags = [:parameters] begin
+@testitem "Parameters" tags=[:parameters] begin
     import ConstraintCommons: USUAL_CONSTRAINT_PARAMETERS
 
     f(x; bool, dim, id, language, op, pair_vars, val, vals) = true
