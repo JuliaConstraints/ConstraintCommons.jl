@@ -16,7 +16,7 @@ Extends `Base.isempty` when the set is `nothing`. Returns `true`.
 consisempty(::Nothing) = true
 consisempty(items) = isempty(items)
 
-@testitem "Set: nothing" tags = [:set, :nothing] begin
+@testitem "Set: nothing" tags=[:set, :nothing] begin
     @test !(ConstraintCommons.consin(42, nothing))
     @test ConstraintCommons.consisempty(nothing)
 end

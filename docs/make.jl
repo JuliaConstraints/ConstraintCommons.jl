@@ -5,7 +5,7 @@ DocMeta.setdocmeta!(
     ConstraintCommons,
     :DocTestSetup,
     :(using ConstraintCommons);
-    recursive = true,
+    recursive = true
 )
 
 makedocs(;
@@ -17,9 +17,9 @@ makedocs(;
         prettyurls = get(ENV, "CI", "false") == "true",
         canonical = "https://JuliaConstraints.github.io/ConstraintCommons.jl",
         edit_link = "main",
-        assets = String[],
+        assets = String[]
     ),
-    pages = ["Home" => "index.md"],
+    pages = ["Home" => "index.md"]
 )
 
 deploydocs(; repo = "github.com/JuliaConstraints/ConstraintCommons.jl", devbranch = "main")

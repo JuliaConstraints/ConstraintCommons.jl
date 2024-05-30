@@ -25,7 +25,7 @@ function oversample(X, f)
     return Z
 end
 
-@testitem "Oversampling" tags = [:sampling, :oversampling] begin
+@testitem "Oversampling" tags=[:sampling, :oversampling] begin
     X = [[0, 1, 1], [0, 1, 2], [0, 0, 0]]
 
     O = oversample(X, allunique)
@@ -34,5 +34,4 @@ end
     @test count(x -> x == [0, 1, 1], O) == 1
     @test count(x -> x == [0, 0, 0], O) == 1
     @test length(O) == 4
-
 end
