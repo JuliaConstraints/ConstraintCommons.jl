@@ -113,42 +113,42 @@ visu(x, d, Val(:chairmark))
 d = copy(d_commons)
 d[:tags] = [:diagrams]
 
-# d = Dict(
-#     :targets => ["ConstraintCommons"], :path => @__DIR__, :tags => [:diagrams],
-#     :pkgs => (
-#         "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true))
+d = Dict(
+    :path => @__DIR__, :tags => [:diagrams],
+    :pkgs => (
+        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true))
 
-# x = @check :alloc d begin
-#     using ConstraintCommons
-# end begin
-#     states = [
-#         Dict( # level x1
-#             (:r, 0) => :n1,
-#             (:r, 1) => :n2,
-#             (:r, 2) => :n3
-#         ),
-#         Dict( # level x2
-#             (:n1, 2) => :n4,
-#             (:n2, 2) => :n4,
-#             (:n3, 0) => :n5
-#         ),
-#         Dict( # level x3
-#             (:n4, 0) => :t,
-#             (:n5, 0) => :t
-#         )
-#     ]
-#     a = MDD(states)
+x = @check :alloc d begin
+    using ConstraintCommons
+end begin
+    states = [
+        Dict( # level x1
+            (:r, 0) => :n1,
+            (:r, 1) => :n2,
+            (:r, 2) => :n3
+        ),
+        Dict( # level x2
+            (:n1, 2) => :n4,
+            (:n2, 2) => :n4,
+            (:n3, 0) => :n5
+        ),
+        Dict( # level x3
+            (:n4, 0) => :t,
+            (:n5, 0) => :t
+        )
+    ]
+    a = MDD(states)
 
-#     accept(a, [0, 2, 0])
-#     accept(a, [1, 2, 0])
-#     accept(a, [2, 0, 0])
+    accept(a, [0, 2, 0])
+    accept(a, [1, 2, 0])
+    accept(a, [2, 0, 0])
 
-#     accept(a, [2, 1, 2])
-#     accept(a, [1, 0, 2])
-#     accept(a, [0, 1, 2])
-# end
+    accept(a, [2, 1, 2])
+    accept(a, [1, 0, 2])
+    accept(a, [0, 1, 2])
+end
 
-# visu(x, d, Val(:allocs))
+visu(x, d, Val(:allocs))
 
 x = @check :benchmark d begin
     using ConstraintCommons
@@ -312,28 +312,49 @@ visu(x, d, Val(:chairmark))
 
 ## SECTION - Nothing: benchmarks and chairmarks
 
-# @info "Running checks: Nothing"
+@info "Running checks: Nothing"
 
-# d = copy(d_commons)
-# d[:tags] = [:nothing]
+d = copy(d_commons)
+d[:tags] = [:nothing]
+d[:pkgs] = ("ConstraintCommons", :custom, [v"0.1.6"], true)
 
-# x = @check :benchmark d begin
-#     using ConstraintCommons
-# end begin
-#     ConstraintCommons.consin(42, nothing)
-#     ConstraintCommons.consisempty(nothing)
-# end
+x = @check :benchmark d begin
+    using ConstraintCommons
+end begin
+    ConstraintCommons.consin(42, nothing)
+    ConstraintCommons.consisempty(nothing)
+end
 
-# visu(x, d, Val(:benchmark))
+visu(x, d, Val(:benchmark))
 
-# x = @check :chairmark d begin
-#     using ConstraintCommons
-# end begin
-#     ConstraintCommons.consin(42, nothing)
-#     ConstraintCommons.consisempty(nothing)
-# end
+x = @check :chairmark d begin
+    using ConstraintCommons
+end begin
+    ConstraintCommons.consin(42, nothing)
+    ConstraintCommons.consisempty(nothing)
+end
 
-# visu(x, d, Val(:chairmark))
+visu(x, d, Val(:chairmark))
+
+d[:pkgs] = ("ConstraintCommons", :custom, [v"0.2.0"], true)
+
+x = @check :benchmark d begin
+    using ConstraintCommons
+end begin
+    42 ∈ nothing
+    isempty(nothing)
+end
+
+visu(x, d, Val(:benchmark))
+
+x = @check :chairmark d begin
+    using ConstraintCommons
+end begin
+    42 ∈ nothing
+    isempty(nothing)
+end
+
+visu(x, d, Val(:chairmark))
 
 ## SECTION - Parameters: benchmarks and chairmarks
 
