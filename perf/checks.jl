@@ -8,7 +8,8 @@ using PerfChecker
 d_commons = Dict(
     :targets => ["ConstraintCommons"], :path => @__DIR__,
     :pkgs => (
-        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true))
+        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true),
+    :devops => "ConstraintCommons")
 
 ## SECTION - Utilities
 tags(d) = mapreduce(x -> string(x), (y, z) -> y * "_" * z, d[:tags])
@@ -117,38 +118,6 @@ d = Dict(
     :path => @__DIR__, :tags => [:diagrams],
     :pkgs => (
         "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true))
-
-x = @check :alloc d begin
-    using ConstraintCommons
-end begin
-    states = [
-        Dict( # level x1
-            (:r, 0) => :n1,
-            (:r, 1) => :n2,
-            (:r, 2) => :n3
-        ),
-        Dict( # level x2
-            (:n1, 2) => :n4,
-            (:n2, 2) => :n4,
-            (:n3, 0) => :n5
-        ),
-        Dict( # level x3
-            (:n4, 0) => :t,
-            (:n5, 0) => :t
-        )
-    ]
-    a = MDD(states)
-
-    accept(a, [0, 2, 0])
-    accept(a, [1, 2, 0])
-    accept(a, [2, 0, 0])
-
-    accept(a, [2, 1, 2])
-    accept(a, [1, 0, 2])
-    accept(a, [0, 1, 2])
-end
-
-visu(x, d, Val(:allocs))
 
 x = @check :benchmark d begin
     using ConstraintCommons
@@ -316,13 +285,18 @@ visu(x, d, Val(:chairmark))
 
 d = copy(d_commons)
 d[:tags] = [:nothing]
-d[:pkgs] = ("ConstraintCommons", :custom, [v"0.1.6"], true)
+# d[:devops] = "ConstraintCommons"
 
 x = @check :benchmark d begin
     using ConstraintCommons
 end begin
-    ConstraintCommons.consin(42, nothing)
-    ConstraintCommons.consisempty(nothing)
+    if d[:current_version] == "dev" || d[:current_version] ≥ v"0.2.0"
+        ConstraintCommons.consin(42, nothing)
+        ConstraintCommons.consisempty(nothing)
+    else
+        42 ∈ nothing
+        isempty(nothing)
+    end
 end
 
 visu(x, d, Val(:benchmark))
@@ -330,28 +304,13 @@ visu(x, d, Val(:benchmark))
 x = @check :chairmark d begin
     using ConstraintCommons
 end begin
-    ConstraintCommons.consin(42, nothing)
-    ConstraintCommons.consisempty(nothing)
-end
-
-visu(x, d, Val(:chairmark))
-
-d[:pkgs] = ("ConstraintCommons", :custom, [v"0.2.0"], true)
-
-x = @check :benchmark d begin
-    using ConstraintCommons
-end begin
-    42 ∈ nothing
-    isempty(nothing)
-end
-
-visu(x, d, Val(:benchmark))
-
-x = @check :chairmark d begin
-    using ConstraintCommons
-end begin
-    42 ∈ nothing
-    isempty(nothing)
+    if d[:current_version] == "dev" || d[:current_version] ≥ v"0.2.0"
+        ConstraintCommons.consin(42, nothing)
+        ConstraintCommons.consisempty(nothing)
+    else
+        42 ∈ nothing
+        isempty(nothing)
+    end
 end
 
 visu(x, d, Val(:chairmark))
@@ -412,25 +371,33 @@ visu(x, d, Val(:chairmark))
 
 ## SECTION - Symbols: benchmarks and chairmarks
 
-# @info "Running checks: Symbols"
+@info "Running checks: Symbols"
 
-# d = copy(d_commons)
-# d[:tags] = [:symbols]
+d = copy(d_commons)
+d[:tags] = [:symbols]
 
-# x = @check :benchmark d begin
-#     using ConstraintCommons
-# end begin
-#     ConstraintCommons.symcon(:a, :b) === :a_b
-# end
+x = @check :benchmark d begin
+    using ConstraintCommons
+end begin
+    if d[:current_version] == "dev" || d[:current_version] ≥ v"0.2.0"
+        ConstraintCommons.symcon(:a, :b) === :a_b
+    else
+        :a * :b === :a_b
+    end
+end
 
-# visu(x, d, Val(:benchmark))
+visu(x, d, Val(:benchmark))
 
-# x = @check :chairmark d begin
-#     using ConstraintCommons
-# end begin
-#     ConstraintCommons.symcon(:a, :b) === :a_b
-# end
+x = @check :chairmark d begin
+    using ConstraintCommons
+end begin
+    if d[:current_version] == "dev" || d[:current_version] ≥ v"0.2.0"
+        ConstraintCommons.symcon(:a, :b) === :a_b
+    else
+        :a * :b === :a_b
+    end
+end
 
-# visu(x, d, Val(:chairmark))
+visu(x, d, Val(:chairmark))
 
 @info "All checks done!"

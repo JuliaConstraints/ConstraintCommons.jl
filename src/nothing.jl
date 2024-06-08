@@ -3,9 +3,8 @@
 
 Extends `Base.in` (or `∈`) when the set is `nothing`. Returns `false`.
 """
-#Base.in(::Any, ::Nothing) = false
 consin(::Any, ::Nothing) = false
-consin(x, y) = in(x, y)
+consin(x, y)::Bool = @inline in(x, y)
 
 """
     Base.isempty(::Nothing)
