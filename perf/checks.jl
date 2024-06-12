@@ -9,7 +9,7 @@ d_commons = Dict(
     :targets => ["ConstraintCommons"], :path => @__DIR__,
     :pkgs => (
         "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true),
-    :devops => "ConstraintCommons")
+    :devops => "ConstraintCommons", :seconds => 100, :evals => 1000)
 
 ## SECTION - Utilities
 tags(d) = mapreduce(x -> string(x), (y, z) -> y * "_" * z, d[:tags])
@@ -254,7 +254,7 @@ d[:tags] = [:extrema]
 x = @check :benchmark d begin
     using ConstraintCommons
 end begin
-    for i in 1:1000
+    for i in 1:100
         X = map(_ -> rand(1:i, i), 1:i)
 
         δ_extrema(X[1])
@@ -268,7 +268,7 @@ visu(x, d, Val(:benchmark))
 x = @check :chairmark d begin
     using ConstraintCommons
 end begin
-    for i in 1:1000
+    for i in 1:100
         X = map(_ -> rand(1:i, i), 1:i)
 
         δ_extrema(X[1])
