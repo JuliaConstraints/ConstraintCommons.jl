@@ -9,7 +9,8 @@ d_commons = Dict(
     :targets => ["ConstraintCommons"], :path => @__DIR__,
     :pkgs => (
         "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0", v"0.2.1", v"0.2.2"], true),
-    :devops => "ConstraintCommons", :seconds => 100, :evals => 1000)
+    # :devops => "ConstraintCommons",
+    :seconds => 100, :evals => 1000)
 
 ## SECTION - Utilities
 tags(d) = mapreduce(x -> string(x), (y, z) -> y * "_" * z, d[:tags])
@@ -113,11 +114,6 @@ visu(x, d, Val(:chairmark))
 
 d = copy(d_commons)
 d[:tags] = [:diagrams]
-
-d = Dict(
-    :path => @__DIR__, :tags => [:diagrams],
-    :pkgs => (
-        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true))
 
 x = @check :benchmark d begin
     using ConstraintCommons
