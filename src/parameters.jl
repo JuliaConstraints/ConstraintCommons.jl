@@ -1,17 +1,17 @@
 """
     const USUAL_CONSTRAINT_PARAMETERS
 
-List of usual constraints parameters (based on XCSP3-core constraints).
+List of usual constraints parameters (based on `XCSP3-core` constraints). The list is based on the nature of each kind of parameter instead of the keywords used in the `XCSP3-core` format.
 ```julia
 const USUAL_CONSTRAINT_PARAMETERS = [
-    :bool,
-    :dim,
-    :id,
-    :language,
-    :op,
-    :pair_vars,
-    :val,
-    :vals,
+    :bool, # boolean parameter
+    :dim, # dimension, an integer parameter used along the pair_vars or vals parameters
+    :id, # index to target one variable in the input vector
+    :language, # describe a regular language such as an automaton or a MDD
+    :op, # an operator such as comparison or arithmetic operator
+    :pair_vars, # a list of parameters that are paired with each variable in the input vector
+    :val, # one scalar value
+    :vals, # a list of scalar values (independent of the input vector size)
 ]
 ```
 """
