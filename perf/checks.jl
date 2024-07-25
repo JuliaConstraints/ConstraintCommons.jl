@@ -8,7 +8,7 @@ using PerfChecker
 d_commons = Dict(
     :targets => ["ConstraintCommons"], :path => @__DIR__,
     :pkgs => (
-        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0"], true),
+        "ConstraintCommons", :custom, [v"0.1.6", v"0.2.0", v"0.2.1", v"0.2.2"], true),
     :devops => "ConstraintCommons", :seconds => 100, :evals => 1000)
 
 ## SECTION - Utilities
