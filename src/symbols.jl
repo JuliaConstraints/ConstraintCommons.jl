@@ -8,5 +8,6 @@ function symcon(s1::Symbol, s2::Symbol, connector::AbstractString = "_")
 end
 
 @testitem "Symbols" tags=[:symbols] begin
-    @test ConstraintCommons.symcon(:a, :b) === :a_b
+    import ConstraintCommons: symcon
+    @test symcon(:a, :b) === :a_b
 end
