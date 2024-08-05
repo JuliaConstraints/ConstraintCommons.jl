@@ -1,8 +1,8 @@
 module ConstraintCommons
 
 #!SECTION -- Imports
-using Dictionaries
-using TestItems
+import Dictionaries: AbstractDictionary, Dictionary, set!
+import TestItems: @testitem
 
 #!SECTION -- Exports
 

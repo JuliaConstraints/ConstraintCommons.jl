@@ -1,8 +1,4 @@
 @testset "Aqua.jl" begin
-    import Aqua
-    import ConstraintCommons
-    import Dictionaries
-
     # TODO: Fix the broken tests and remove the `broken = true` flag
     Aqua.test_all(
         ConstraintCommons;
