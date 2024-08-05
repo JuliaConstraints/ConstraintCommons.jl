@@ -15,6 +15,7 @@ consisempty(::Nothing) = true
 consisempty(items) = @inline isempty(items)
 
 @testitem "Set: nothing" tags=[:set, :nothing] begin
-    @test !(ConstraintCommons.consin(42, nothing))
-    @test ConstraintCommons.consisempty(nothing)
+    import ConstraintCommons: consin, consisempty
+    @test !(consin(42, nothing))
+    @test consisempty(nothing)
 end

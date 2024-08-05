@@ -6,3 +6,7 @@
 /docs/Manifest.toml
 
 /perf/Manifest.toml
+
+.gitignore
+
+.DS_Store
