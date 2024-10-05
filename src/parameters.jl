@@ -2,6 +2,7 @@
     const USUAL_CONSTRAINT_PARAMETERS
 
 List of usual constraints parameters (based on `XCSP3-core` constraints). The list is based on the nature of each kind of parameter instead of the keywords used in the `XCSP3-core` format.
+
 ```julia
 const USUAL_CONSTRAINT_PARAMETERS = [
     :bool, # boolean parameter
