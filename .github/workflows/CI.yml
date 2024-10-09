@@ -50,6 +50,10 @@ jobs:
       fail-fast: false
       matrix:
         version:
+<<<<<<< HEAD
+=======
+          - "lts"
+>>>>>>> 9d3427a (Update julia to v11. Gets rid of perf files)
           - "1"
           - "pre"
         os:
