@@ -28,10 +28,10 @@ function extract_parameters(m::Method; parameters = USUAL_CONSTRAINT_PARAMETERS)
     return intersect(Base.kwarg_decl(m), parameters)
 end
 
-function extract_parameters(
-        f::F;
+Base.@nospecializeinfer function extract_parameters(
+        Base.@nospecialize(f::Function);
         parameters = USUAL_CONSTRAINT_PARAMETERS
-) where {F <: Function}
+)
     return filter(!isempty, map(m -> extract_parameters(m; parameters), methods(f)))
 end
 

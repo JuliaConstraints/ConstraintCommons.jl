@@ -1,0 +1,574 @@
+recorded_utc = "2026-10-08T21:45:10.097"
+cn_commit = "46192ea8ecde5ad8029c61f05c737984f370c52d"
+case_sha256 = "a534a73e7f4923ea9a4d65d79a318871cb79fd47a5053a0ed072c4873a666fbd"
+cn_assertions = 31683
+contract = "Parameter inspection retains Method and Function dispatch, declaration order, current overloaded method tables, explicit allowed-name collections and fresh caller-owned result arrays. Callable non-Function objects remain unsupported. No metadata or mutable learning-network cache is added."
+julia_threads = 2
+baseline_cc_commit = "0035f603a9564d2d19a0a1822d8c81b0a6e517c3"
+cpu_affinity = [4, 6]
+measurement_scope = "Reflection over pure atomic functions in the normal scalar ICN grammar. Factory, ordinary grammar construction and original-reference preparation excluded. Returned reflection arrays intentionally allocate; this workload is setup work, not a solver score."
+cn_compose_sha256 = "af889d030f78affacfb7915906312bee09c1bfdef743779a77fc2448cc7919ac"
+cc_assertions = 784
+blas_threads = 1
+timing_qualification = "Operational fresh-process same-input comparisons on CPUs 4,6 while other tasks active. Complete bank setup excludes CN import and module bootstrap. No controlled scaling claim."
+runtime = "1.13.1"
+gc_threads = 1
+diagnostic_limitations = "Aqua retains existing missing test-extra compat findings. Static metadata reflection findings are reported for both current and original implementations; finding counts are not a correctness verdict. Raw temporary redacted heaps were hash-verified and removed."
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+source_sha256 = "dadbff21b674cf3d3d04a51fec40d3bfc0935174f8ff882dcf039145c40627b6"
+
+[[cold_measurements]]
+warm_factory_allocs = 3251
+cached_bytes = 7520
+cold_bytes = 236386784
+sequence = 1
+cold_compile_seconds = 2.252013556
+warm_factory_ns = 169243.0
+warm_factory_bytes = 186864
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.260411385
+cached_seconds = 4.756e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[cold_measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167612768
+sequence = 2
+cold_compile_seconds = 2.08835692
+warm_factory_ns = 164413.0
+warm_factory_bytes = 185904
+mode = "cc-no-specialize"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.095065061
+cached_seconds = 4.9727e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[cold_measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167481184
+sequence = 3
+cold_compile_seconds = 2.061749367
+warm_factory_ns = 160000.0
+warm_factory_bytes = 185904
+mode = "cc-no-specialize"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.068329014
+cached_seconds = 4.9621e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[cold_measurements]]
+warm_factory_allocs = 3251
+cached_bytes = 7520
+cold_bytes = 236383832
+sequence = 4
+cold_compile_seconds = 2.391502517
+warm_factory_ns = 167797.0
+warm_factory_bytes = 186864
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.404040763
+cached_seconds = 4.6494e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[cold_measurements]]
+warm_factory_allocs = 3251
+cached_bytes = 7520
+cold_bytes = 236121912
+sequence = 1
+cold_compile_seconds = 2.139089346
+warm_factory_ns = 163227.0
+warm_factory_bytes = 186864
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.14676943
+cached_seconds = 4.316e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[cold_measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167219680
+sequence = 2
+cold_compile_seconds = 1.95427175
+warm_factory_ns = 155607.0
+warm_factory_bytes = 185904
+mode = "current"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 1.960659295
+cached_seconds = 4.5576e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[cold_measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167218560
+sequence = 3
+cold_compile_seconds = 1.991993719
+warm_factory_ns = 155392.0
+warm_factory_bytes = 185904
+mode = "current"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 1.998434815
+cached_seconds = 4.8997e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[cold_measurements]]
+warm_factory_allocs = 3251
+cached_bytes = 7520
+cold_bytes = 236120368
+sequence = 4
+cold_compile_seconds = 2.248680998
+warm_factory_ns = 164225.0
+warm_factory_bytes = 186864
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.257577081
+cached_seconds = 5.1424e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000127823
+    maximum = 0.000220477
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000129066
+    maximum = 0.00022544100000000003
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile_alloc"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+implementation = "original"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000130566
+    maximum = 0.000241344
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+implementation = "original"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000129484
+    maximum = 0.000224366
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "0.8.18"
+finding_count = 1
+tool = "aqua"
+scenario = "package"
+measurements = ""
+correctness = "not_checked"
+status = "complete"
+analysis_scope = ""
+implementation = "package"
+quality = "failed"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "quality.aqua"
+    message = "Some tests did not pass: 3 passed, 1 failed, 0 errored, 0 broken."
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "0.12.3"
+finding_count = 2
+tool = "jet"
+scenario = "scalar-grammar-parameter-inspection"
+measurements = ""
+correctness = "passed"
+status = "complete"
+analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+implementation = "current"
+quality = "not_checked"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any)::Any)"
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any, %13::Any)::Any)"
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "0.2.6"
+finding_count = 40
+tool = "alloccheck"
+scenario = "scalar-grammar-parameter-inspection"
+measurements = ""
+correctness = "passed"
+status = "complete"
+analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+implementation = "current"
+quality = "not_checked"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Vector{Vector{Symbol}}} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n  [1] GenericMemory\n    @ ./boot.jl:588 [inlined]\n  [2] Array\n    @ ./boot.jl:648 [inlined]\n  [3] Array\n    @ ./boot.jl:661 [inlined]\n  [4] Array\n    @ ./boot.jl:671 [inlined]\n  [5] similar\n    @ ./abstractarray.jl:877 [inlined]\n  [6] similar\n    @ ./array.jl:409 [inlined]\n  [7] similar\n    @ ./abstractarray.jl:876 [inlined]\n  [8] _array_for_inner\n    @ ./array.jl:701 [inlined]\n  [9] collect(itr::B"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Vector{Vector{Symbol}}} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#current##0#current##1\"{@NamedTuple{functions::Vect"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Any} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#current##0#current##1\"{@NamedTuple{functions::Vector{Function}, names"""
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "3.2.9"
+finding_count = 1
+tool = "snoopcompile"
+scenario = "scalar-grammar-parameter-inspection"
+correctness = "passed"
+status = "complete"
+analysis_scope = "first complete scenario lifecycle in diagnostic process"
+implementation = "current"
+quality = "not_checked"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "compilation.inference"
+    message = "InferenceTimingNode: 0.000014/0.000015 on Base.Compiler.Timings.ROOT() with 0 direct children"
+
+    [diagnostics.measurements]
+    inference_seconds = 1.537799835205078e-5
+[[diagnostics]]
+summary = ""
+measurement_scope = "fresh process; source loading; full lifecycle including preparation and verification"
+tool_version = ""
+finding_count = 0
+tool = "latency"
+findings = []
+scenario = "scalar-grammar-parameter-inspection"
+correctness = "passed"
+status = "complete"
+analysis_scope = ""
+implementation = "current"
+quality = "not_checked"
+limitations = ""
+
+    [diagnostics.measurements]
+    first_case_seconds = 0.080506844
+    load_seconds = 1.705850738
+    warm_case_seconds = 0.000267085
+[[diagnostics]]
+summary = "5 operations: 0.0 ms in GC, 576720 allocated bytes in total. Diagnostic counters are process-wide."
+measurement_scope = ""
+tool_version = ""
+finding_count = 0
+tool = "gc"
+findings = []
+scenario = "scalar-grammar-parameter-inspection"
+correctness = "passed"
+status = "complete"
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+implementation = "current"
+quality = "not_checked"
+limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+
+    [diagnostics.measurements.sample_summary.full_sweep]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.operation_seconds]
+    samples = 5
+    minimum = 0.000131388
+    maximum = 0.000229724
+
+    [diagnostics.measurements.sample_summary.lock_conflicts]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.malloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.gc_seconds]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.bigalloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.poolalloc]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [diagnostics.measurements.sample_summary.compile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.allocated_bytes]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+
+    [diagnostics.measurements.sample_summary.recompile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.realloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.pause]
+    samples = 5
+    minimum = 0
+    maximum = 0
+[[diagnostics]]
+summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+measurement_scope = ""
+tool_version = ""
+finding_count = 0
+tool = "memory"
+findings = []
+scenario = "scalar-grammar-parameter-inspection"
+correctness = "passed"
+status = "complete"
+analysis_scope = ""
+implementation = "current"
+quality = "not_checked"
+limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+
+    [diagnostics.measurements.sample_summary.state_before_bytes]
+    samples = 5
+    minimum = 672
+    maximum = 672
+
+    [diagnostics.measurements.sample_summary.state_after_bytes]
+    samples = 5
+    minimum = 672
+    maximum = 672
+
+    [diagnostics.measurements.sample_summary.state_and_result_bytes]
+    samples = 5
+    minimum = 5120
+    maximum = 5120
+[[diagnostics]]
+summary = "5 operations: 0 observed lock conflicts. Counts do not measure waiting duration."
+measurement_scope = ""
+tool_version = ""
+finding_count = 0
+tool = "locks"
+findings = []
+scenario = "scalar-grammar-parameter-inspection"
+correctness = "passed"
+status = "complete"
+analysis_scope = ""
+implementation = "current"
+quality = "not_checked"
+limitations = ["Counts do not measure blocked duration or prove a scalability bottleneck.", "Only runtime-reported lock conflicts are covered; native locks and device barriers are not."]
+
+    [diagnostics.measurements.sample_summary.full_sweep]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.operation_seconds]
+    samples = 5
+    minimum = 0.00012844
+    maximum = 0.000251774
+
+    [diagnostics.measurements.sample_summary.lock_conflicts]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.malloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.gc_seconds]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.bigalloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.poolalloc]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [diagnostics.measurements.sample_summary.compile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.allocated_bytes]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+
+    [diagnostics.measurements.sample_summary.recompile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.realloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.pause]
+    samples = 5
+    minimum = 0
+    maximum = 0
+[[diagnostics]]
+summary = "Redacted heap snapshot captured after verification. Covers GC-managed objects in the whole worker; native and device memory are excluded."
+measurement_scope = ""
+tool_version = ""
+finding_count = 0
+tool = "heap"
+findings = []
+scenario = "scalar-grammar-parameter-inspection"
+measurements = ""
+correctness = "passed"
+status = "complete"
+analysis_scope = ""
+implementation = "current"
+quality = "not_checked"
+limitations = ["Snapshot covers the entire diagnostic process, not just the scenario.", "Only GC-managed memory is represented; native and device memory are excluded.", "Snapshot capture is intrusive and its duration is not baseline performance evidence."]
+
+    [[diagnostics.artifacts]]
+    bytes = 281022807
+    kind = "heap_snapshot"
+    sha256 = "5f8ce37d85dc501bb5a16d31ce29d16b42065cdaf49412b0f1a7c9e047a141d0"
+    redacted = true
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "0.12.3"
+finding_count = 2
+tool = "jet"
+scenario = "scalar-grammar-parameter-inspection"
+measurements = ""
+correctness = "passed"
+status = "complete"
+analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+implementation = "original"
+quality = "not_checked"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any)::Any)"
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any, %13::Any)::Any)"
+[[diagnostics]]
+summary = ""
+measurement_scope = ""
+tool_version = "0.2.6"
+finding_count = 40
+tool = "alloccheck"
+scenario = "scalar-grammar-parameter-inspection"
+measurements = ""
+correctness = "passed"
+status = "complete"
+analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+implementation = "original"
+quality = "not_checked"
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Vector{Vector{Symbol}}} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n  [1] GenericMemory\n    @ ./boot.jl:588 [inlined]\n  [2] Array\n    @ ./boot.jl:648 [inlined]\n  [3] Array\n    @ ./boot.jl:661 [inlined]\n  [4] Array\n    @ ./boot.jl:671 [inlined]\n  [5] similar\n    @ ./abstractarray.jl:877 [inlined]\n  [6] similar\n    @ ./array.jl:409 [inlined]\n  [7] similar\n    @ ./abstractarray.jl:876 [inlined]\n  [8] _array_for_inner\n    @ ./array.jl:701 [inlined]\n  [9] collect(itr::B"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Vector{Vector{Symbol}}} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#original##0#original##1\"{@NamedTuple{functions::Ve"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Vector{Vector{Symbol}}} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#original##0#original##1\"{@NamedTuple{functions::Ve"""
