@@ -25,7 +25,28 @@ const USUAL_CONSTRAINT_PARAMETERS = [
 Extracts the intersection between the `kargs` of `m` and `parameters` (defaults to `USUAL_CONSTRAINT_PARAMETERS`).
 """
 function extract_parameters(m::Method; parameters = USUAL_CONSTRAINT_PARAMETERS)
-    return intersect(Base.kwarg_decl(m), parameters)
+    keywords = Base.kwarg_decl(m)
+    parameters isa Vector{Symbol} && length(parameters) <= 64 &&
+        length(keywords) <= 64 || return intersect(keywords, parameters)
+    # Reflection returns a fresh list. Compact it while retaining the same
+    # declaration order and uniqueness as intersect, without temporary sets.
+    # Keep the scan bounded for unusually large signatures or parameter lists.
+    kept = 0
+    for name in keywords
+        name in parameters || continue
+        duplicate = false
+        for index in 1:kept
+            if keywords[index] === name
+                duplicate = true
+                break
+            end
+        end
+        duplicate && continue
+        kept += 1
+        keywords[kept] = name
+    end
+    resize!(keywords, kept)
+    return keywords
 end
 
 Base.@nospecializeinfer function extract_parameters(
