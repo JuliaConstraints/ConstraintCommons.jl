@@ -1,0 +1,251 @@
+recorded_utc = "2026-10-08T20:27:45.856"
+julia_threads = 2
+cpu_affinity = [4, 6]
+artifact_policy = "Raw redacted heaps were created under OS temporary directories and removed; only summary evidence is retained."
+timing_qualification = "Operational same-input measurements while other tasks were active; no controlled scaling claim. Preparation and verification excluded from measurements."
+blas_threads = 1
+remaining_findings = "Aqua found pre-existing missing test-extra compat bounds for Aqua, ExplicitImports, JET and Test; dependency, Julia and weak-dependency bounds passed."
+runtime = "1.13.1"
+gc_threads = 1
+source_sha256 = "40d8881a46a6fae8ea80b971a33d4037ce54bad2b150a08230bd4a029bcd6993"
+
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+message = ""
+implementation = "current"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.9e-8
+    maximum = 6.3e-8
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 0
+    maximum = 0
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+message = ""
+implementation = "current"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.7e-8
+    maximum = 5.8e-8
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile"
+message = ""
+implementation = "current"
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile_alloc"
+message = ""
+implementation = "current"
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+message = ""
+implementation = "original"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.0e-7
+    maximum = 2.19e-7
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 0
+    maximum = 0
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+message = ""
+implementation = "original"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.1100000000000002e-7
+    maximum = 2.22e-7
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+[tests]
+range_span_contract = "Compare original observation scan and materialized reference for ascending, descending, empty, singleton, floating, rational and near-limit integer ranges."
+full_package_assertions = 770
+
+[[diagnostics]]
+correctness = "not_checked"
+status = "complete"
+message = ""
+tool = "aqua"
+analysis_scope = ""
+quality = "failed"
+
+    [diagnostics.measurements]
+
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "quality.aqua"
+    message = "Some tests did not pass: 3 passed, 1 failed, 0 errored, 0 broken."
+
+        [diagnostics.findings.evidence]
+
+        [diagnostics.findings.location]
+        line = 0
+        file = ""
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "jet"
+analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "alloccheck"
+analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "snoopcompile"
+analysis_scope = "first complete scenario lifecycle in diagnostic process"
+quality = "not_checked"
+
+    [diagnostics.measurements]
+    inference_seconds = 1.537799835205078e-5
+
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "compilation.inference"
+    message = "InferenceTimingNode: 0.000014/0.000015 on Base.Compiler.Timings.ROOT() with 0 direct children"
+
+        [diagnostics.findings.evidence]
+        inference_seconds = 1.537799835205078e-5
+
+        [diagnostics.findings.location]
+        line = 0
+        file = ""
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "latency"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+    first_case_seconds = 0.02501978
+    load_seconds = 0.074342601
+    warm_case_seconds = 3.295e-6
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "gc"
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "memory"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "locks"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "heap"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]

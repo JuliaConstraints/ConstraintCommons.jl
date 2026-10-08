@@ -19,6 +19,12 @@ function δ_extrema(X)
     return hi - lo
 end
 
+function δ_extrema(X::AbstractRange{<:Real})
+    isempty(X) && return Inf
+    lo, hi = extrema(X)
+    return hi - lo
+end
+
 # SECTION - Test Items for δ_extrema
 @testitem "δ_extrema" tags=[:δ_extrema] begin
     # Test case 1: Single non-nested collection
