@@ -32,7 +32,7 @@ Base.@nospecializeinfer function extract_parameters(
         Base.@nospecialize(f::Function);
         parameters = USUAL_CONSTRAINT_PARAMETERS
 )
-    return filter(!isempty, map(m -> extract_parameters(m; parameters), methods(f)))
+    return filter!(!isempty, map(m -> extract_parameters(m; parameters), methods(f)))
 end
 
 @testitem "Parameters" tags=[:parameters] begin

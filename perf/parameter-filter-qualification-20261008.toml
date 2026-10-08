@@ -1,0 +1,359 @@
+recorded_utc = "2026-10-08T21:54:07.930"
+cn_commit = "46192ea8ecde5ad8029c61f05c737984f370c52d"
+case_sha256 = "a534a73e7f4923ea9a4d65d79a318871cb79fd47a5053a0ed072c4873a666fbd"
+qualification = "Allocation reduction only. Two fresh-process brackets observed exactly 120 fewer objects and 3840 fewer bytes per scalar grammar construction; cold times overlap and no timing speedup is claimed."
+cn_assertions = 31683
+julia_threads = 2
+baseline_cc_commit = "1707636e0145e00c6b3098f25e3e41c61de38136"
+cpu_affinity = [4, 6]
+measurement_scope = "Setup reflection over normal scalar grammar pure functions. Factory and original-reference preparation excluded. Returned result arrays intentionally allocate. No training or solver throughput measurement."
+cc_assertions = 784
+blas_threads = 1
+change = "Filter the newly allocated mapped parameter groups in place, preserving public result type, order, current method tables and private ownership. No shared array or cache is mutated."
+runtime = "1.13.1"
+gc_threads = 1
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+source_sha256 = "07ace2aebc1c78dd1a821899d0fb3b3ab0e06b661e455bceb53e4b66e4f59224"
+
+[[measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167217464
+sequence = 1
+cold_compile_seconds = 1.992587272
+warm_factory_ns = 159888.0
+warm_factory_bytes = 185904
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 1.999057526
+cached_seconds = 4.9325e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[measurements]]
+warm_factory_allocs = 3071
+cached_bytes = 7520
+cold_bytes = 167082440
+sequence = 2
+cold_compile_seconds = 2.062181605
+warm_factory_ns = 158392.0
+warm_factory_bytes = 182064
+mode = "filter-inplace"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.068695371
+cached_seconds = 4.5696e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[measurements]]
+warm_factory_allocs = 3071
+cached_bytes = 7520
+cold_bytes = 167085616
+sequence = 3
+cold_compile_seconds = 2.110331502
+warm_factory_ns = 162720.0
+warm_factory_bytes = 182064
+mode = "filter-inplace"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.117198872
+cached_seconds = 5.1376e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167218560
+sequence = 4
+cold_compile_seconds = 2.121076649
+warm_factory_ns = 161138.0
+warm_factory_bytes = 185904
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.127728824
+cached_seconds = 5.1253e-5
+cached_compile_seconds = 0.0
+phase = "in-memory"
+[[measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167347744
+sequence = 1
+cold_compile_seconds = 2.137119059
+warm_factory_ns = 164898.0
+warm_factory_bytes = 185904
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.144591388
+cached_seconds = 5.5211e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[measurements]]
+warm_factory_allocs = 3071
+cached_bytes = 7520
+cold_bytes = 167211336
+sequence = 2
+cold_compile_seconds = 2.132786738
+warm_factory_ns = 159332.0
+warm_factory_bytes = 182064
+mode = "current"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.139347956
+cached_seconds = 5.0882e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[measurements]]
+warm_factory_allocs = 3071
+cached_bytes = 7520
+cold_bytes = 167211736
+sequence = 3
+cold_compile_seconds = 2.160467858
+warm_factory_ns = 160563.0
+warm_factory_bytes = 182064
+mode = "current"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.167928958
+cached_seconds = 6.6125e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+[[measurements]]
+warm_factory_allocs = 3191
+cached_bytes = 7520
+cold_bytes = 167353160
+sequence = 4
+cold_compile_seconds = 2.08410565
+warm_factory_ns = 160949.0
+warm_factory_bytes = 185904
+mode = "baseline"
+bank_sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+cold_seconds = 2.090777358
+cached_seconds = 5.1768e-5
+cached_compile_seconds = 0.0
+phase = "implemented"
+
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000128407
+    maximum = 0.000216066
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2030
+    maximum = 2030
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 111504
+    maximum = 111504
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.00012790700000000002
+    maximum = 0.000232272
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2030.0
+    maximum = 2030.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 111504.0
+    maximum = 111504.0
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile_alloc"
+implementation = "current"
+scenario = "scalar-grammar-parameter-inspection"
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+implementation = "original"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.000128285
+    maximum = 0.000209013
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150
+    maximum = 2150
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344
+    maximum = 115344
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+implementation = "original"
+scenario = "scalar-grammar-parameter-inspection"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 0.00012757
+    maximum = 0.000229766
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2150.0
+    maximum = 2150.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 115344.0
+    maximum = 115344.0
+
+[[diagnostics]]
+measurements = ""
+correctness = "passed"
+summary = ""
+status = "complete"
+tool_version = "0.12.3"
+analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+tool = "jet"
+finding_count = 2
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any)::Any)"
+    [[diagnostics.findings]]
+    rule_id = "inference.runtime_dispatch"
+    message = "RuntimeDispatchReport(runtime dispatch detected: iterate(%6::Any, %13::Any)::Any)"
+[[diagnostics]]
+measurements = ""
+correctness = "passed"
+summary = ""
+status = "complete"
+tool_version = "0.2.6"
+analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+tool = "alloccheck"
+finding_count = 37
+limitations = ""
+
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Vector{Vector{Symbol}}} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n  [1] GenericMemory\n    @ ./boot.jl:588 [inlined]\n  [2] Array\n    @ ./boot.jl:648 [inlined]\n  [3] Array\n    @ ./boot.jl:661 [inlined]\n  [4] Array\n    @ ./boot.jl:671 [inlined]\n  [5] similar\n    @ ./abstractarray.jl:877 [inlined]\n  [6] similar\n    @ ./array.jl:409 [inlined]\n  [7] similar\n    @ ./abstractarray.jl:876 [inlined]\n  [8] _array_for_inner\n    @ ./array.jl:701 [inlined]\n  [9] collect(itr::B"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Vector{Vector{Symbol}}} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#current##0#current##1\"{@NamedTuple{functions::Vect"""
+    [[diagnostics.findings]]
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Any} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] Array\n   @ ./boot.jl:661 [inlined]\n [3] Array\n   @ ./boot.jl:671 [inlined]\n [4] similar\n   @ ./abstractarray.jl:877 [inlined]\n [5] similar\n   @ ./array.jl:409 [inlined]\n [6] similar\n   @ ./abstractarray.jl:876 [inlined]\n [7] _array_for_inner\n   @ ./array.jl:701 [inlined]\n [8] collect(itr::Base.Generator{Vector{Function}, Main.var\"##SharedCase#142\".ParameterCases.var\"#current##0#current##1\"{@NamedTuple{functions::Vector{Function}, names"""
+[[diagnostics]]
+correctness = "passed"
+summary = "5 operations: 0.0 ms in GC, 557520 allocated bytes in total. Diagnostic counters are process-wide."
+status = "complete"
+tool_version = ""
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+tool = "gc"
+finding_count = 0
+findings = []
+limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+
+    [diagnostics.measurements.sample_summary.full_sweep]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.operation_seconds]
+    samples = 5
+    minimum = 0.00012816
+    maximum = 0.000235629
+
+    [diagnostics.measurements.sample_summary.lock_conflicts]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.malloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.gc_seconds]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.bigalloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.poolalloc]
+    samples = 5
+    minimum = 2030
+    maximum = 2030
+
+    [diagnostics.measurements.sample_summary.compile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.allocated_bytes]
+    samples = 5
+    minimum = 111504
+    maximum = 111504
+
+    [diagnostics.measurements.sample_summary.recompile_time]
+    samples = 5
+    minimum = 0.0
+    maximum = 0.0
+
+    [diagnostics.measurements.sample_summary.realloc]
+    samples = 5
+    minimum = 0
+    maximum = 0
+
+    [diagnostics.measurements.sample_summary.pause]
+    samples = 5
+    minimum = 0
+    maximum = 0
+[[diagnostics]]
+correctness = "passed"
+summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+status = "complete"
+tool_version = ""
+analysis_scope = ""
+tool = "memory"
+finding_count = 0
+findings = []
+limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+
+    [diagnostics.measurements.sample_summary.state_before_bytes]
+    samples = 5
+    minimum = 672
+    maximum = 672
+
+    [diagnostics.measurements.sample_summary.state_after_bytes]
+    samples = 5
+    minimum = 672
+    maximum = 672
+
+    [diagnostics.measurements.sample_summary.state_and_result_bytes]
+    samples = 5
+    minimum = 5120
+    maximum = 5120
