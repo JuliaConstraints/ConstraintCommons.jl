@@ -1,10 +1,12 @@
 recorded_utc = "2026-10-08T20:27:45.856"
+case_sha256 = "76bc232d66a677441430eebc26f05c6dc21e8805395e8334330e040ef792e205"
 julia_threads = 2
 cpu_affinity = [4, 6]
-artifact_policy = "Raw redacted heaps were created under OS temporary directories and removed; only summary evidence is retained."
+artifact_policy = "Raw redacted heaps were created under OS temporary directories and removed after collecting summary evidence; no snapshot path is retained as a deliverable."
 timing_qualification = "Operational same-input measurements while other tasks were active; no controlled scaling claim. Preparation and verification excluded from measurements."
 blas_threads = 1
-remaining_findings = "Aqua found pre-existing missing test-extra compat bounds for Aqua, ExplicitImports, JET and Test; dependency, Julia and weak-dependency bounds passed."
+resource_detail_recorded_utc = "2026-10-08T20:42:22.248"
+remaining_findings = "Aqua missing compat for pre-existing test extras Aqua, ExplicitImports, JET and Test."
 runtime = "1.13.1"
 gc_threads = 1
 source_sha256 = "40d8881a46a6fae8ea80b971a33d4037ce54bad2b150a08230bd4a029bcd6993"
@@ -133,6 +135,135 @@ implementation = "original"
 [tests]
 range_span_contract = "Compare original observation scan and materialized reference for ascending, descending, empty, singleton, floating, rational and near-limit integer ranges."
 full_package_assertions = 770
+
+[[resource_details]]
+tool = "gc"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: 0.0 ms in GC, 0 allocated bytes in total. Diagnostic counters are process-wide."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+message = ""
+limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.gc_seconds]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.allocated_bytes]
+        minimum = 0
+        maximum = 0
+
+        [resource_details.measurements.compile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.operation_seconds]
+        minimum = 3.9e-8
+        maximum = 4.78e-7
+
+        [resource_details.measurements.recompile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.lock_conflicts]
+        minimum = 0
+        maximum = 0
+[[resource_details]]
+tool = "memory"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = ""
+message = ""
+limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.state_before_bytes]
+        minimum = 16
+        maximum = 16
+
+        [resource_details.measurements.state_after_bytes]
+        minimum = 16
+        maximum = 16
+
+        [resource_details.measurements.reachable_state_growth_bytes]
+        minimum = 0
+        maximum = 0
+
+        [resource_details.measurements.state_and_result_bytes]
+        minimum = 24
+        maximum = 24
+[[resource_details]]
+tool = "locks"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: 0 observed lock conflicts. Counts do not measure waiting duration."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = ""
+message = ""
+limitations = ["Counts do not measure blocked duration or prove a scalability bottleneck.", "Only runtime-reported lock conflicts are covered; native locks and device barriers are not."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.gc_seconds]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.allocated_bytes]
+        minimum = 0
+        maximum = 0
+
+        [resource_details.measurements.compile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.operation_seconds]
+        minimum = 3.8e-8
+        maximum = 5.65e-7
+
+        [resource_details.measurements.recompile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.lock_conflicts]
+        minimum = 0
+        maximum = 0
+[[resource_details]]
+tool = "heap"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "Redacted heap snapshot captured after verification. Covers GC-managed objects in the whole worker; native and device memory are excluded."
+tool_version = ""
+status = "complete"
+message = ""
+analysis_scope = ""
+limitations = ["Snapshot covers the entire diagnostic process, not just the scenario.", "Only GC-managed memory is represented; native and device memory are excluded.", "Snapshot capture is intrusive and its duration is not baseline performance evidence."]
+
+    [resource_details.measurements]
+
+    [[resource_details.heap_summary]]
+    bytes = 184664171
+    kind = "heap_snapshot"
+    sha256 = "981b8ed73b3db31ef5275e457b34a94100fa2297357f973b9e7e8fb406c6c4e3"
+    redacted = true
 
 [[diagnostics]]
 correctness = "not_checked"
