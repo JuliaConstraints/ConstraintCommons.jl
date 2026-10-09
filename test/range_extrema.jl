@@ -11,6 +11,72 @@
     @test allocations(1:1_000_000) == 0
 end
 
+@testitem "BigInt unit spans preserve values and ownership" begin
+    import ConstraintCommons: δ_extrema
+
+    reference(values) = invoke(δ_extrema, Tuple{Any}, values)
+    function compare(values)
+        endpoints = (deepcopy(first(values)), deepcopy(last(values)))
+        result = δ_extrema(values)
+        expected = reference(values)
+        @test isequal(result, expected)
+        @test typeof(result) === typeof(expected)
+        @test (first(values), last(values)) == endpoints
+        if result isa BigInt
+            @test result !== first(values) && result !== last(values)
+            saved = deepcopy(result)
+            Base.GMP.MPZ.add!(result, big(1))
+            @test (first(values), last(values)) == endpoints
+            @test reference(values) == saved
+        end
+    end
+
+    for bits in (0, 1, 7, 63, 64, 127, 128, 255, 1024, 4096),
+            sign in (-1, 1), offset in (-3, -1, 0, 1, 2, 17)
+        start = sign * (big(2)^bits + 3)
+        compare(UnitRange(deepcopy(start), start + offset))
+    end
+    for stop in (-3, 0, 1, 2, 5, 17, 1000)
+        compare(Base.OneTo(big(stop)))
+    end
+
+    # BigInt fields can be edited despite the immutable range container.
+    # Unit steps remain exact for all of these new endpoint values.
+    for start in (-7, -1, 0, 3), stop in (-7, -1, 0, 3, 7)
+        values = big(1):big(5)
+        Base.GMP.MPZ.set!(getfield(values, :start), big(start))
+        Base.GMP.MPZ.set!(getfield(values, :stop), big(stop))
+        compare(values)
+    end
+    for stop in (-3, 0, 1, 5, 17)
+        values = Base.OneTo(big(5))
+        Base.GMP.MPZ.set!(getfield(values, :stop), big(stop))
+        compare(values)
+    end
+
+    # Stepped and length-based BigInt representations keep their observation
+    # scan; they are not admitted by the new unit-step specialization.
+    for values in (big(-7):big(2):big(9), big(9):big(-2):big(-7),
+                   StepRange(big(-7), UInt(2), big(9)),
+                   StepRangeLen{BigInt}(big(-7), big(2), 9))
+        compare(values)
+    end
+
+    stop = big(10)^30
+    values = big(1):stop
+    result = δ_extrema(values)
+    @test result == stop - 1
+    @test result isa BigInt
+    @test result !== stop
+    @test last(values) == stop
+    ones = Base.OneTo(stop)
+    result = δ_extrema(ones)
+    @test result == stop - 1
+    @test result isa BigInt
+    @test result !== stop
+    @test last(ones) == stop
+end
+
 @testitem "Range span shortcut preserves observed values" begin
     import ConstraintCommons: δ_extrema
 

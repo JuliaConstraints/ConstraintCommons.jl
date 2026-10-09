@@ -27,6 +27,9 @@ const _SpanInteger = Union{Bool, Int8, Int16, Int32, Int64, Int128,
 # length-based integer ranges can wrap. Only trust native ordinal bounds.
 _span_native_bounds(::Any) = false
 _span_native_bounds(::Union{UnitRange{T}, Base.OneTo{T}}) where {T<:_SpanInteger} = true
+# BigInt unit steps are exact even when endpoint objects change after creation.
+# Stepped BigInt ranges retain traversal: mutable fields can break alignment.
+_span_native_bounds(::UnitRange{BigInt}) = true
 function _span_native_bounds(values::StepRange{T,S}) where {T<:_SpanInteger,S<:_SpanInteger}
     # A negative signed value plus an unsigned step can remain negative but
     # become unsigned before iteration converts it back, raising InexactError.
@@ -39,6 +42,12 @@ function δ_extrema(X::AbstractRange{<:Real})
     isempty(X) && return Inf
     lo, hi = extrema(X)
     return hi - lo
+end
+
+function δ_extrema(X::Base.OneTo{BigInt})
+    stop = last(X)
+    stop < 1 && return Inf
+    return stop - 1
 end
 
 # SECTION - Test Items for δ_extrema

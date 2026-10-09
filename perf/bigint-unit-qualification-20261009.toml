@@ -1,0 +1,806 @@
+analyzer_scope = "Eight fresh operation specializations. JET reports zero findings in both cases. AllocCheck retains two BigInt/finalizer allocation sites per case. GC observes 56 allocated bytes, one pool allocation and one malloc per operation, zero compilation/recompilation and no observed collection. Reachable input state remains stable; joint traversal includes the owned returned BigInt."
+baseline_commit = "39b0dfde4a43034c9c515ee79aa173096f89e370"
+baseline_source_sha256 = "539d0cd722748dcbc97f1df8d1db600712c51cd6d43b48fb401587e05e0aa19b"
+case_sha256 = "d577dfac00fb68c29b96af41c711a4eb201a7ec54cb0c50835a16d095988b872"
+catalog_sha256 = "c752f96bcdd06a4962082b4f266bba9654b8c976f41db65a027e5b21cdb8ffc5"
+change = "Admit concrete UnitRange{BigInt} to endpoint span calculation and use one direct stop-minus-one calculation for concrete OneTo{BigInt}. Preserve the generic traversal for stepped, interpolated, length-based and custom BigInt ranges."
+cleanup = "Only intrinsic source, regression tests, reusable profiling case/catalog and this qualification record were added. No helper scripts, dumps, backups, raw reports or copied environments persisted."
+diagnostic_manifest_sha256 = "10b7ae47f6bef299009e6dca7075b75f3bca4e77bb1c9c21b83dd84fe2de1c1e"
+harness_corrections = ["copy(BigInt) preserved object identity, so the initial mutable result snapshot was not independent; corrected all ownership snapshots to deepcopy and reran passing tests.", "The initial generic OneTo endpoint shortcut allocated 280 bytes and ten objects, including a singleton regression versus 224 bytes/eight original objects. Replaced it with direct exact stop-minus-one, then reran all collectors, analyzers and full downstream checks on the final source.", "An initial analyzer-output capture was truncated; final-source analyzer evidence was captured completely and parsed before qualification."]
+limits = ["Not zero allocation: the nonempty result owns a BigInt. At the tested small endpoint bit widths it costs 56 Julia allocated bytes and two objects.", "Work uses a fixed number of exact arithmetic operations in range length; BigInt arithmetic and result storage still depend on operand bit widths.", "Julia allocation counters and reachable-state traversal do not measure a native GMP peak or whole-process memory peak.", "Operational elapsed times are recorded under concurrent overnight work; no controlled elapsed-time, cold-call or fitted scaling claim.", "Julia 1.13.1 executed; no Julia 1.12 runtime claim.", "Shared application sources, frozen integrated environments and other library sources were not edited.", "No native solver execution, optimization training, learned-bank edits or broad benchmark matrix."]
+measurement_scope = "Prepared private deep-copied BigInt range, complete span calculation, preparation and verification excluded. One matched process covers empty/singleton/10/1000 sizes with 100 samples/evals=1 and reversed repeat at 1000; 18 separate collector operations cover native/unit-BigInt/OneTo-BigInt at 1000."
+proof = "A nonempty BigInt unit-range iterator starts at its first endpoint, increments exactly by one without overflow and stops at the last endpoint. Its observed minimum and maximum are those endpoints, including after endpoint mutation. OneTo starts at exactly one; a stop below one is empty. Nonempty subtraction creates an independently owned BigInt."
+recorded_utc = "2026-10-09T02:07:39.894"
+reference = "invoke(delta_extrema, Tuple{Any}, values) uses the unchanged original observation traversal; compare exact result type and value, retained input endpoints and independently owned mutable result."
+schema = "juliaconstraints-bigint-unit-span-qualification/1"
+source_sha256 = "13e0ba01474111dddf4df68155794186d6f63f32bd1af5780d6e21d44804eb0e"
+test_sha256 = "f2c157fd6a595aaf7ff3faab8f464e3de0d2d068a7d3f2478b5bcec0cd867c5f"
+
+[analyzer_evidence]
+case_sha256 = "d577dfac00fb68c29b96af41c711a4eb201a7ec54cb0c50835a16d095988b872"
+recorded_utc = "2026-10-09T02:04:30.408"
+source_sha256 = "13e0ba01474111dddf4df68155794186d6f63f32bd1af5780d6e21d44804eb0e"
+
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    quality = "not_checked"
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    summary = ""
+    tool = "jet"
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+    correctness = "passed"
+    findings_count = 2
+    quality = "not_checked"
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    summary = ""
+    tool = "alloccheck"
+
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of BigInt in ./gmp.jl:70"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./gmp.jl"
+            line = 70
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocating runtime call to \"jl_gc_add_ptr_finalizer\" in ./gcutils.jl:92"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./gcutils.jl"
+            line = 92
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+    quality = "not_checked"
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    summary = "5 operations: 0.0 ms in GC, 280 allocated bytes in total. Diagnostic counters are process-wide."
+    tool = "gc"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.allocated_bytes]
+            maximum = 56
+            minimum = 56
+
+            [analyzer_evidence.analyzers.measurements.bigalloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.compile_time]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.full_sweep]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.gc_seconds]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.lock_conflicts]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.malloc]
+            maximum = 1
+            minimum = 1
+
+            [analyzer_evidence.analyzers.measurements.operation_seconds]
+            maximum = 1.286e-6
+            minimum = 6.6e-8
+
+            [analyzer_evidence.analyzers.measurements.pause]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.poolalloc]
+            maximum = 1
+            minimum = 1
+
+            [analyzer_evidence.analyzers.measurements.realloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.recompile_time]
+            maximum = 0.0
+            minimum = 0.0
+    [[analyzer_evidence.analyzers]]
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+    quality = "not_checked"
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+    tool = "memory"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.state_after_bytes]
+            maximum = 64
+            minimum = 64
+
+            [analyzer_evidence.analyzers.measurements.state_and_result_bytes]
+            maximum = 104
+            minimum = 104
+
+            [analyzer_evidence.analyzers.measurements.state_before_bytes]
+            maximum = 64
+            minimum = 64
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    quality = "not_checked"
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    summary = ""
+    tool = "jet"
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+    correctness = "passed"
+    findings_count = 2
+    quality = "not_checked"
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    summary = ""
+    tool = "alloccheck"
+
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of BigInt in ./gmp.jl:70"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./gmp.jl"
+            line = 70
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocating runtime call to \"jl_gc_add_ptr_finalizer\" in ./gcutils.jl:92"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./gcutils.jl"
+            line = 92
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+    quality = "not_checked"
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    summary = "5 operations: 0.0 ms in GC, 280 allocated bytes in total. Diagnostic counters are process-wide."
+    tool = "gc"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.allocated_bytes]
+            maximum = 56
+            minimum = 56
+
+            [analyzer_evidence.analyzers.measurements.bigalloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.compile_time]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.full_sweep]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.gc_seconds]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.lock_conflicts]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.malloc]
+            maximum = 1
+            minimum = 1
+
+            [analyzer_evidence.analyzers.measurements.operation_seconds]
+            maximum = 8.29e-7
+            minimum = 5.7e-8
+
+            [analyzer_evidence.analyzers.measurements.pause]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.poolalloc]
+            maximum = 1
+            minimum = 1
+
+            [analyzer_evidence.analyzers.measurements.realloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.recompile_time]
+            maximum = 0.0
+            minimum = 0.0
+    [[analyzer_evidence.analyzers]]
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+    quality = "not_checked"
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+    tool = "memory"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.state_after_bytes]
+            maximum = 32
+            minimum = 32
+
+            [analyzer_evidence.analyzers.measurements.state_and_result_bytes]
+            maximum = 64
+            minimum = 64
+
+            [analyzer_evidence.analyzers.measurements.state_before_bytes]
+            maximum = 32
+            minimum = 32
+
+[bank]
+exact_weights_unchanged = true
+populated = 3
+schemas = ["W4 sum", "W2 all_equal", "W52 ordered"]
+sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+slots = 52
+training = false
+
+[collector_evidence]
+case_sha256 = "d577dfac00fb68c29b96af41c711a4eb201a7ec54cb0c50835a16d095988b872"
+recorded_utc = "2026-10-09T02:04:54.618"
+source_sha256 = "13e0ba01474111dddf4df68155794186d6f63f32bd1af5780d6e21d44804eb0e"
+
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 7.2e-8
+        minimum = 3.3e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 5.8e-8
+        minimum = 2.7e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "profile"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "profile_alloc"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 2.28e-7
+        minimum = 2.14e-7
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "numeric-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 2.28e-7
+        minimum = 2.1100000000000002e-7
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 56
+        minimum = 56
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2
+        minimum = 2
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 1.664e-6
+        minimum = 6.2e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 56.0
+        minimum = 56.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2.0
+        minimum = 2.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 1.044e-6
+        minimum = 6.4e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "profile"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "profile_alloc"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 224232
+        minimum = 224232
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 7994
+        minimum = 7994
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 0.000153387
+        minimum = 0.000106771
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "bigint-unit-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 226568.0
+        minimum = 224232.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 7994.0
+        minimum = 7994.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 0.000137517
+        minimum = 9.766700000000001e-5
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 56
+        minimum = 56
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2
+        minimum = 2
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 1.404e-6
+        minimum = 8.7e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 56.0
+        minimum = 56.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2.0
+        minimum = 2.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 1.041e-6
+        minimum = 6.4e-8
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "profile"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "profile_alloc"
+    correctness = "passed"
+    implementation = "current"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 224480
+        minimum = 224480
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 8000
+        minimum = 8000
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 0.000158799
+        minimum = 0.000103085
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "original"
+    message = ""
+    scenario = "bigint-one-to-range-span"
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 228272.0
+        minimum = 224528.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 8004.0
+        minimum = 8000.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 0.011856667000000001
+        minimum = 0.000101229
+        samples = 5
+
+[matched]
+evals = 1
+recorded_utc = "2026-10-09T02:04:36.012"
+samples = 100
+source_sha256 = "13e0ba01474111dddf4df68155794186d6f63f32bd1af5780d6e21d44804eb0e"
+
+    [[matched.measurements]]
+    allocations = 0
+    bytes = 0
+    minimum_ns = 16.0
+    n = 0
+    range = "unit"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 0
+    bytes = 0
+    minimum_ns = 14.0
+    n = 0
+    range = "unit"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 30.0
+    n = 1
+    range = "unit"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 32.0
+    n = 1
+    range = "unit"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 74
+    bytes = 2072
+    minimum_ns = 950.0
+    n = 10
+    range = "unit"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 33.0
+    n = 10
+    range = "unit"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 7994
+    bytes = 223832
+    minimum_ns = 99415.0
+    n = 1000
+    range = "unit"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 32.0
+    n = 1000
+    range = "unit"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 33.0
+    n = 1000
+    range = "unit"
+    variant = "current-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 7994
+    bytes = 223832
+    minimum_ns = 91326.0
+    n = 1000
+    range = "unit"
+    variant = "original-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 27.0
+    n = 0
+    range = "one-to"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 0
+    bytes = 0
+    minimum_ns = 13.0
+    n = 0
+    range = "one-to"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 8
+    bytes = 224
+    minimum_ns = 73.0
+    n = 1
+    range = "one-to"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 27.0
+    n = 1
+    range = "one-to"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 80
+    bytes = 2240
+    minimum_ns = 1060.0
+    n = 10
+    range = "one-to"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 26.0
+    n = 10
+    range = "one-to"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 8000
+    bytes = 224000
+    minimum_ns = 91540.0
+    n = 1000
+    range = "one-to"
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 28.0
+    n = 1000
+    range = "one-to"
+    variant = "current"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 2
+    bytes = 56
+    minimum_ns = 26.0
+    n = 1000
+    range = "one-to"
+    variant = "current-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[matched.measurements]]
+    allocations = 8000
+    bytes = 224000
+    minimum_ns = 91128.0
+    n = 1000
+    range = "one-to"
+    variant = "original-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+
+[runtime]
+blas_threads = 1
+cpu_affinity = [4, 6]
+julia = "1.13.1"
+julia_gc_threads = 1
+julia_threads = 2
+mkl_threads = 1
+omp_threads = 1
+package_precompile_auto = false
+
+[tests]
+added_regression_assertions = 794
+bigint_domain_integration = 14
+cn_nontraining = 35849
+cn_standalone = 4872
+constraintcommons = 6135
+constraintdomains = 99
+constraints = 119284
+coverage = ["Empty, singleton and short ranges, both signs, anchors through 4096 bits", "Endpoint objects changed with GMP after range construction, including negative OneTo stops", "Returned result mutated with GMP without changing input endpoints or later observed span", "Stepped and length-based BigInt ranges still match the original observation method", "UnitRange and OneTo with 10^30 stop validated independently through span and domain_size", "Existing custom getter effects, late exceptions, floating values and wrapping range tests all retained"]
+exact_bank = 29
+source_hash_unchanged_during_full_downstream_process = true

@@ -1,0 +1,51 @@
+schema_version = "perfchecker-scenario-catalog/1"
+root = ".."
+
+[[scenarios]]
+source = "range_cases.jl"
+factory = "RangeCases.span"
+collectors = ["benchmark", "chairmark", "profile", "profile_alloc"]
+id = "bigint-unit-range-span"
+implementation = "current"
+[scenarios.parameters]
+method = "current"
+element = "bigint"
+range = "unit"
+n = 1000
+
+[[scenarios]]
+source = "range_cases.jl"
+factory = "RangeCases.span"
+collectors = ["benchmark", "chairmark"]
+id = "bigint-unit-range-span"
+implementation = "original"
+[scenarios.parameters]
+method = "original"
+element = "bigint"
+range = "unit"
+n = 1000
+
+[[scenarios]]
+source = "range_cases.jl"
+factory = "RangeCases.span"
+collectors = ["benchmark", "chairmark", "profile", "profile_alloc"]
+id = "bigint-one-to-range-span"
+implementation = "current"
+[scenarios.parameters]
+method = "current"
+element = "bigint"
+range = "one-to"
+n = 1000
+
+[[scenarios]]
+source = "range_cases.jl"
+factory = "RangeCases.span"
+collectors = ["benchmark", "chairmark"]
+id = "bigint-one-to-range-span"
+implementation = "original"
+[scenarios.parameters]
+method = "original"
+element = "bigint"
+range = "one-to"
+n = 1000
+
