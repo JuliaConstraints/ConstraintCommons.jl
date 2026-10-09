@@ -19,7 +19,23 @@ function δ_extrema(X)
     return hi - lo
 end
 
+const _SpanInteger = Union{Bool, Int8, Int16, Int32, Int64, Int128,
+    UInt8, UInt16, UInt32, UInt64, UInt128}
+
+# Endpoint metadata need not describe the extrema of observed range values:
+# custom ranges can have effects, interpolated ranges can round, and
+# length-based integer ranges can wrap. Only trust native ordinal bounds.
+_span_native_bounds(::Any) = false
+_span_native_bounds(::Union{UnitRange{T}, Base.OneTo{T}}) where {T<:_SpanInteger} = true
+function _span_native_bounds(values::StepRange{T,S}) where {T<:_SpanInteger,S<:_SpanInteger}
+    # A negative signed value plus an unsigned step can remain negative but
+    # become unsigned before iteration converts it back, raising InexactError.
+    return !(T <: Signed && S <: Unsigned && promote_type(T, S) <: Unsigned) ||
+           getfield(values, :start) >= 0
+end
+
 function δ_extrema(X::AbstractRange{<:Real})
+    _span_native_bounds(X) || return invoke(δ_extrema, Tuple{Any}, X)
     isempty(X) && return Inf
     lo, hi = extrema(X)
     return hi - lo
